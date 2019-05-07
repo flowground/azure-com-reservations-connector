@@ -1,0 +1,66 @@
+{
+    "type": "object",
+    "properties": {
+        "reservationOrderId": {
+            "required": true,
+            "type": "string"
+        },
+        "reservationId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "properties": {
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "appliedScopeType": {
+                            "description": "Type of the Applied Scope.",
+                            "enum": [
+                                "Single",
+                                "Shared"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "AppliedScopeType"
+                            }
+                        },
+                        "appliedScopes": {
+                            "description": "List of the subscriptions that the benefit will be applied. Do not specify if AppliedScopeType is Shared.",
+                            "items": {
+                                "maxItems": 1,
+                                "minItems": 1,
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "instanceFlexibility": {
+                            "description": "Allows reservation discount to be applied across skus within the same Autofit group. Not all skus support instance size flexibility.",
+                            "enum": [
+                                "On",
+                                "Off",
+                                "NotSupported"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "InstanceFlexibility"
+                            }
+                        },
+                        "name": {
+                            "description": "Name of the Reservation",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

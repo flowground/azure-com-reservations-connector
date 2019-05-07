@@ -1,0 +1,37 @@
+{
+    "type": "object",
+    "properties": {
+        "reservationOrderId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "properties": {
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "quantities": {
+                            "description": "List of the quantities in the new reservations to create.",
+                            "items": {
+                                "maxItems": 2,
+                                "minItems": 2,
+                                "type": "integer"
+                            },
+                            "type": "array"
+                        },
+                        "reservationId": {
+                            "description": "Resource id of the reservation to be split. Format of the resource id should be /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

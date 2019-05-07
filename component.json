@@ -1,0 +1,236 @@
+{
+    "title": "Azure Reservation",
+    "description": "This API describe Azure Reservation",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/reservations/2018-06-01/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "Operation_List": {
+            "main": "./lib/actions/Operation_List.js",
+            "title": "Get operations.",
+            "description": "List all the operations.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Operation_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ReservationOrder_List": {
+            "main": "./lib/actions/ReservationOrder_List.js",
+            "title": "Get all `ReservationOrder`s.",
+            "description": "List of all the `ReservationOrder`s that the user has access to in the current tenant.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ReservationOrder_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ReservationOrder_Get": {
+            "main": "./lib/actions/ReservationOrder_Get.js",
+            "title": "Get a specific `ReservationOrder`.",
+            "description": "Get the details of the `ReservationOrder`.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ReservationOrder_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Reservation_Merge": {
+            "main": "./lib/actions/Reservation_Merge.js",
+            "title": "Merges two `Reservation`s.",
+            "description": "Merge the specified `Reservation`s into a new `Reservation`. The two `Reservation`s being merged must have same properties.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Reservation_Merge.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Reservation_List": {
+            "main": "./lib/actions/Reservation_List.js",
+            "title": "Get `Reservation`s in a given reservation Order",
+            "description": "List `Reservation`s within a single `ReservationOrder`.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Reservation_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Reservation_Get": {
+            "main": "./lib/actions/Reservation_Get.js",
+            "title": "Get `Reservation` details.",
+            "description": "Get specific `Reservation` details.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Reservation_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Reservation_Update": {
+            "main": "./lib/actions/Reservation_Update.js",
+            "title": "Updates a `Reservation`.",
+            "description": "Updates the applied scopes of the `Reservation`.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Reservation_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Reservation_ListRevisions": {
+            "main": "./lib/actions/Reservation_ListRevisions.js",
+            "title": "Get `Reservation` revisions.",
+            "description": "List of all the revisions for the `Reservation`.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Reservation_ListRevisions.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Reservation_Split": {
+            "main": "./lib/actions/Reservation_Split.js",
+            "title": "Split the `Reservation`.",
+            "description": "Split a `Reservation` into two `Reservation`s with specified quantity distribution.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Reservation_Split.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetAppliedReservationList": {
+            "main": "./lib/actions/GetAppliedReservationList.js",
+            "title": "Get list of applicable `Reservation`s.",
+            "description": "Get applicable `Reservation`s that are applied to this subscription.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetAppliedReservationList.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetCatalog": {
+            "main": "./lib/actions/GetCatalog.js",
+            "title": "Get the regions and skus that are available for RI purchase for the specified Azure subscription.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetCatalog.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
